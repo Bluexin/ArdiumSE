@@ -21,15 +21,10 @@ public class ContainerArdiumWorkbench extends Container {
         this.tileEntityArdiumWorkbench = tileEntity;
         tileEntity.openInventory ();
         setAllowedItems ();
-
-        /* guiArdiumWorkbench2 */
         this.addSlotToContainer (new Slot (tileEntity, 0, 187, 33) {
             @Override
             public boolean isItemValid(ItemStack itemStack) {
                 return allowedItems.contains (itemStack.getItem ());
-                /*itemStack.getItem () instanceof ItemArdium
-                        || itemStack.getItem () instanceof ItemArmorArdium
-                        || itemStack.getItem () == Item.getItemFromBlock (BlocksRegister.blockArdium)*/
             }
         });
         this.bindPlayerInventory (inventoryPlayer);
@@ -41,11 +36,6 @@ public class ContainerArdiumWorkbench extends Container {
     }
 
     private void bindPlayerInventory(InventoryPlayer inventoryPlayer) {
-        /*
-        private int numRows = inventoryPlayer.getSizeInventory() / 9; => Number of player inventory lines available
-        I want 3 lines
-         */
-        //int i = -18;
         int j;
         for (j = 0; j < 3; ++j) {
             for (int k = 0; k < 9; ++k) {
@@ -105,7 +95,6 @@ public class ContainerArdiumWorkbench extends Container {
                 slot.onSlotChanged ();
             }
         }
-
         return itemStack;
     }
 }
