@@ -29,11 +29,11 @@ public class ItemsRegister {
     public static Item oxiumChestplate;
     public static Item oxiumLeggings;
     public static Item oxiumBoots;
-    private static Item ardiumSword;
-    private static Item ardiumShovel;
-    private static Item ardiumPickaxe;
-    private static Item ardiumAxe;
-    private static Item ardiumMultiTools;
+    public static Item ardiumSword;
+    public static Item ardiumShovel;
+    public static Item ardiumPickaxe;
+    public static Item ardiumAxe;
+    public static Item ardiumMultiTools;
     private static Item oxiumSword;
     private static Item oxiumShovel;
     private static Item oxiumAxe;

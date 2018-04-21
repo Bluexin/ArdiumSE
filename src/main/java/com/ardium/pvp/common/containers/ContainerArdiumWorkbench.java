@@ -1,7 +1,7 @@
 package com.ardium.pvp.common.containers;
 
 import com.ardium.pvp.common.init.BlocksRegister;
-import com.ardium.pvp.common.items.ItemArdium;
+import com.ardium.pvp.common.init.ItemsRegister;
 import com.ardium.pvp.common.tileentities.TileEntityArdiumWorkbench;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -10,32 +10,26 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class ContainerArdiumWorkbench extends Container {
     private final TileEntityArdiumWorkbench tileEntityArdiumWorkbench;
+    private Set<Item> allowedItems = new HashSet<> ();
 
     public ContainerArdiumWorkbench(TileEntityArdiumWorkbench tileEntity, InventoryPlayer inventoryPlayer) {
         this.tileEntityArdiumWorkbench = tileEntity;
         tileEntity.openInventory ();
-        /*
-        guiArdiumWorkbench
-        this.addSlotToContainer (new Slot (tileEntity, 0, 205, 31) {
-            @Override
-            public boolean isItemValid(ItemStack itemStack) {
-                return itemStack.getItem () instanceof ItemArdium
-                        || itemStack.getItem () == Item.getItemFromBlock (BlocksRegister.blockArdium);
-            }
-        });
-        */
+        setAllowedItems ();
 
         /* guiArdiumWorkbench2 */
         this.addSlotToContainer (new Slot (tileEntity, 0, 187, 33) {
-
-
             @Override
             public boolean isItemValid(ItemStack itemStack) {
-                return itemStack != null && itemStack.getItem () != null &&
-                        (itemStack.getItem () instanceof ItemArdium
-                                || itemStack.getItem () == Item.getItemFromBlock (BlocksRegister.blockArdium));
+                return allowedItems.contains (itemStack.getItem ());
+                /*itemStack.getItem () instanceof ItemArdium
+                        || itemStack.getItem () instanceof ItemArmorArdium
+                        || itemStack.getItem () == Item.getItemFromBlock (BlocksRegister.blockArdium)*/
             }
         });
         this.bindPlayerInventory (inventoryPlayer);
@@ -64,6 +58,21 @@ public class ContainerArdiumWorkbench extends Container {
         }
     }
 
+    private void setAllowedItems() {
+        allowedItems.add (ItemsRegister.ardium);
+        allowedItems.add (ItemsRegister.ardiumHelmet);
+        allowedItems.add (ItemsRegister.ardiumChestplate);
+        allowedItems.add (ItemsRegister.ardiumLeggings);
+        allowedItems.add (ItemsRegister.ardiumBoots);
+        allowedItems.add (ItemsRegister.ardiumSword);
+        allowedItems.add (ItemsRegister.ardiumShovel);
+        allowedItems.add (ItemsRegister.ardiumPickaxe);
+        allowedItems.add (ItemsRegister.ardiumAxe);
+        allowedItems.add (ItemsRegister.ardiumMultiTools);
+        allowedItems.add (Item.getItemFromBlock (BlocksRegister.blockArdium));
+        allowedItems.add (Item.getItemFromBlock (BlocksRegister.oreArdium));
+    }
+
     @Override
     public void onContainerClosed(EntityPlayer player) {
         super.onContainerClosed (player);
@@ -75,22 +84,28 @@ public class ContainerArdiumWorkbench extends Container {
         ItemStack itemStack = null;
         Slot slot = ((Slot) this.inventorySlots.get (slotIndex));
         if ( slot != null && slot.getHasStack () ) {
+            ItemStack itemStack1 = slot.getStack ();
+            itemStack = itemStack1.copy ();
+            if ( !(allowedItems.contains (itemStack1.getItem ())) ) {
+                return null;
+            }
+
             if ( slotIndex < this.tileEntityArdiumWorkbench.getSizeInventory () ) {
-                ItemStack itemStackInSlot = slot.getStack ();
-                itemStack = itemStackInSlot.copy ();
-                if ( !this.mergeItemStack (itemStackInSlot, this.tileEntityArdiumWorkbench.getSizeInventory (), this.inventorySlots.size (),
-                        true) ) {
-                    return null;
-                } else if ( !this.mergeItemStack (itemStackInSlot, 0, this.tileEntityArdiumWorkbench.getSizeInventory (), false) ) {
+                if ( !(this.mergeItemStack (itemStack1, tileEntityArdiumWorkbench.getSizeInventory (),
+                        this.inventorySlots.size (), false)) ) {
                     return null;
                 }
-                if ( itemStackInSlot.stackSize == 0 ) {
-                    slot.putStack (null);
-                } else {
-                    slot.onSlotChanged ();
-                }
+            } else if ( !this.mergeItemStack (itemStack1, 0, this.tileEntityArdiumWorkbench.getSizeInventory (), false) ) {
+                return null;
+            }
+
+            if ( itemStack1.stackSize == 0 ) {
+                slot.putStack (null);
+            } else {
+                slot.onSlotChanged ();
             }
         }
+
         return itemStack;
     }
 }

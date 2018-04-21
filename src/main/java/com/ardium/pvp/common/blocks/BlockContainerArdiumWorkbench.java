@@ -14,7 +14,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 
 public class BlockContainerArdiumWorkbench extends BlockContainer {
@@ -50,10 +49,8 @@ public class BlockContainerArdiumWorkbench extends BlockContainer {
         if ( !world.isRemote ) {
             //Add a configurable GUI ID later
             player.openGui (ArdiumSE.instance, 0, world, x, y, z);
-            player.addChatComponentMessage (new ChatComponentText ("Server"));
             return true;
         } else {
-            player.addChatComponentMessage (new ChatComponentText ("Client"));
             return false;
         }
     }
