@@ -1,0 +1,16 @@
+[
+{
+  "modid": "ardiumse",
+  "name": "ArdiumSE",
+  "description": "Ardium Special Edition",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Yslohr"],
+  "credits": "IMot3k for creating the server and giving ideas as well as the staff",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

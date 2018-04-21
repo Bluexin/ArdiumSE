@@ -1,0 +1,32 @@
+item.ardium.name=Ardium
+
+item.ardium_sword.name=Épée en Ardium
+item.ardium_shovel.name=Pelle en Ardium
+item.ardium_pickaxe.name=Pioche en Ardium
+item.ardium_axe.name=Hache en Ardium
+item.ardium_hoe.name=Houe en Ardium
+item.ardium_multitools.name=MultiOutils en Ardium
+
+item.ardium_helmet.name=Haume en Ardium
+item.ardium_chestplate.name=Plastron en Ardium
+item.ardium_leggings.name=Jambieres en Ardium
+item.ardium_boots.name=Bottes en Ardium
+
+item.oxiumSword.name=Épée en Oxium
+item.oxiumShovel.name=Pelle en Oxium
+item.oxiumPickaxe.name=Pioche en Oxium
+item.oxiumAxe.name=Hache en Oxium
+
+item.oxiumHelmet.name=Haume en Oxium
+item.oxiumChestplate.name=Plastron en Oxium
+item.oxiumLeggings.name=Jambières en Oxium
+item.oxiumBoots.name=Bottes en Oxium
+
+
+tile.oreArdium.name=Minerais d'Ardium
+tile.blockArdium.name=Bloc d'Ardium
+tile.blockArdiumWorkbench.name=Établi d'Ardium
+
+container.ardiumWorkbench.name=Établi d'Ardium
+
+itemGroup.ardiumSETab=Onglet Ardium 

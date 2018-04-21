@@ -1,0 +1,36 @@
+# archives
+*.jar
+*.zip
+*.7zip
+*.rar
+*.tar.gz
+*.ear
+*.war
+
+# eclipse
+bin
+*.launch
+.settings
+.metadata
+.classpath
+.project
+
+# idea
+out
+*.iml
+*.ipr
+*.iws
+*.iml
+.idea
+
+# gradle
+build
+.gradle
+
+# other
+eclipse
+run
+*.class
+*.log
+*.cfg
+*.properties
