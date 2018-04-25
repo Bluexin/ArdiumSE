@@ -29,4 +29,6 @@ tile.blockArdiumWorkbench.name=Établi d'Ardium
 
 container.ardiumWorkbench.name=Établi d'Ardium
 
+gui.ardiumWorkbench.number_of_ardium_stored.label=Nombre d'Ardium Stocké :
+
 itemGroup.ardiumSETab=Onglet Ardium 
