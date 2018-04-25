@@ -1,6 +1,6 @@
 package com.ardium.pvp.common.init;
 
-import com.ardium.pvp.common.tileentities.TileEntityArdiumWorkbench;
+import com.ardium.pvp.common.tileentity.TileEntityArdiumWorkbench;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class TileEntitiesRegister {

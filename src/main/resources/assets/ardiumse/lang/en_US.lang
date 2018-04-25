@@ -28,4 +28,6 @@ tile.blockArdiumWorkbench.name=Ardium Workbench
 
 container.ardiumWorkbench.name=Ardium Workbench
 
+gui.ardiumWorkbench.number_of_ardium_stored.label=Number of Ardium Stored :
+
 itemGroup.ardiumSETab=Ardium SE Tab

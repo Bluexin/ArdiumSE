@@ -2,7 +2,7 @@ package com.ardium.pvp.client.renders.blocks.tileentitiesspecialrenderers;
 
 import com.ardium.pvp.ArdiumSE;
 import com.ardium.pvp.client.models.blocks.ModelArdiumWorkbench;
-import com.ardium.pvp.common.tileentities.TileEntityArdiumWorkbench;
+import com.ardium.pvp.common.tileentity.TileEntityArdiumWorkbench;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;

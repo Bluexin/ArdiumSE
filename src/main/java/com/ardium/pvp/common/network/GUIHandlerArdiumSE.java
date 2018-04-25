@@ -1,8 +1,8 @@
-package com.ardium.pvp.common.guihandler;
+package com.ardium.pvp.common.network;
 
 import com.ardium.pvp.client.gui.GuiArdiumWorkbench;
-import com.ardium.pvp.common.containers.ContainerArdiumWorkbench;
-import com.ardium.pvp.common.tileentities.TileEntityArdiumWorkbench;
+import com.ardium.pvp.common.inventory.ContainerArdiumWorkbench;
+import com.ardium.pvp.common.tileentity.TileEntityArdiumWorkbench;
 import cpw.mods.fml.common.network.IGuiHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;

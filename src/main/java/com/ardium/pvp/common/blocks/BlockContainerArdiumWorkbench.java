@@ -2,7 +2,8 @@ package com.ardium.pvp.common.blocks;
 
 import com.ardium.pvp.ArdiumSE;
 import com.ardium.pvp.client.ClientProxy;
-import com.ardium.pvp.common.tileentities.TileEntityArdiumWorkbench;
+import com.ardium.pvp.common.configuration.ArdiumSEConfiguration;
+import com.ardium.pvp.common.tileentity.TileEntityArdiumWorkbench;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -48,7 +49,7 @@ public class BlockContainerArdiumWorkbench extends BlockContainer {
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
         if ( !world.isRemote ) {
             //Add a configurable GUI ID later
-            player.openGui (ArdiumSE.instance, 0, world, x, y, z);
+            player.openGui (ArdiumSE.instance, ArdiumSEConfiguration.ardiumWorkbenchGuiId, world, x, y, z);
             return true;
         } else {
             return false;
