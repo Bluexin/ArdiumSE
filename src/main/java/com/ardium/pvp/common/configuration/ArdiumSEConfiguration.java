@@ -1,20 +1,8 @@
 package com.ardium.pvp.common.configuration;
 
 
-import com.ardium.pvp.ArdiumSE;
-import cpw.mods.fml.client.event.ConfigChangedEvent;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.eventhandler.EventPriority;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import net.minecraft.client.resources.I18n;
-import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.common.config.Property;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
 public class ArdiumSEConfiguration {
+    /*
     public static final String CATEGORY_MOD_GUI_IDS = "modGuiIDs";
     public static int ardiumWorkbenchGuiId;
 
@@ -72,5 +60,6 @@ public class ArdiumSEConfiguration {
             }
         }
     }
+    */
 }
 

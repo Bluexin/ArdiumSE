@@ -1,14 +1,7 @@
 package com.ardium.pvp.common.events;
 
-import com.ardium.pvp.common.entity.extendedproperties.ExtendedEntityPlayerProperties;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.event.entity.EntityEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.event.entity.player.PlayerOpenContainerEvent;
-
 public class EventsHandlerArdiumSE {
+    /*
     @SubscribeEvent
     public void onEntityConstructing (EntityEvent.EntityConstructing entityConstructingEvent) {
         if ( entityConstructingEvent.entity instanceof EntityPlayer
@@ -26,7 +19,18 @@ public class EventsHandlerArdiumSE {
         }
     }
 
+
     @SubscribeEvent
     public void onPlayerOpensContainer (PlayerOpenContainerEvent openContainerEvent) {
+        if ( openContainerEvent.entityPlayer != null && openContainerEvent.canInteractWith ) {
+            ContainerArdiumWorkbench containerArdiumWorkbench = new ContainerArdiumWorkbench (new
+                    TileEntityArdiumWorkbench (), new InventoryPlayer (openContainerEvent
+                     .entityPlayer)))
+            if ( openContainerEvent.equals ( ) {
+
+
+            }
+        }
     }
+    */
 }

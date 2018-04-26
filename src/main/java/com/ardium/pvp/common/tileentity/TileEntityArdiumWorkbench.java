@@ -11,6 +11,8 @@ import net.minecraftforge.common.util.Constants;
 
 public class TileEntityArdiumWorkbench extends TileEntity implements IInventory {
     private static final String KEY_ARDIUM_AMOUNT_STORED = "ArdiumAmountStored";
+    private int ardiumStoredAmount;
+    private int tickCounter;
     private ItemStack[] ardiumWorkbenchContent = new ItemStack[1];
     private String ardiumWorkbenchContainerCustomName;
 
@@ -77,6 +79,27 @@ public class TileEntityArdiumWorkbench extends TileEntity implements IInventory 
         }
         this.markDirty ();
     }
+
+    /*
+    @Override
+    public void updateEntity () {
+        Block block = worldObj.getBlock (xCoord, yCoord, zCoord);
+        int blockMetadata = worldObj.getBlockMetadata (xCoord, yCoord, zCoord);
+        TileEntity tileEntity = worldObj.getTileEntity (xCoord, yCoord, zCoord);
+        if ( block instanceof BlockContainerArdiumWorkbench
+                && blockMetadata == 0
+                && tileEntity instanceof TileEntityArdiumWorkbench ) {
+
+            ItemStack itemStackInArdiumWorkbench = this.ardiumWorkbenchContent[0];
+            if ( itemStackInArdiumWorkbench != null && itemStackInArdiumWorkbench.getItem () instanceof ItemArdium ) {
+                ardiumStoredAmount += itemStackInArdiumWorkbench.stackSize;
+                decrStackSize (0, itemStackInArdiumWorkbench.stackSize);
+                System.out.println ("Ardium Stored Amount : " + ardiumStoredAmount);
+            }
+
+        }
+        super.updateEntity ();
+    }*/
 
 
     @Override
