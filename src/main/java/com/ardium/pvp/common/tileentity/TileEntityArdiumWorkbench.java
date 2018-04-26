@@ -1,6 +1,9 @@
 package com.ardium.pvp.common.tileentity;
 
+import com.ardium.pvp.common.blocks.BlockContainerArdiumWorkbench;
 import com.ardium.pvp.common.inventory.ContainerArdiumWorkbench;
+import com.ardium.pvp.common.items.ItemArdium;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -80,7 +83,7 @@ public class TileEntityArdiumWorkbench extends TileEntity implements IInventory 
         this.markDirty ();
     }
 
-    /*
+
     @Override
     public void updateEntity () {
         Block block = worldObj.getBlock (xCoord, yCoord, zCoord);
@@ -99,7 +102,7 @@ public class TileEntityArdiumWorkbench extends TileEntity implements IInventory 
 
         }
         super.updateEntity ();
-    }*/
+    }
 
 
     @Override
