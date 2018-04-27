@@ -1,30 +1,23 @@
 package com.ardium.pvp.common.inventory;
 
-import com.ardium.pvp.common.init.BlocksRegister;
-import com.ardium.pvp.common.init.ItemsRegister;
 import com.ardium.pvp.common.inventory.slots.SlotArdiumWorkbench;
 import com.ardium.pvp.common.tileentity.TileEntityArdiumWorkbench;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import static com.ardium.pvp.common.init.ItemsRegister.ardium;
-
 public class ContainerArdiumWorkbench extends Container {
-    public static final Set < Item > ALLOWED_ITEMS = new HashSet < Item > ();
     private final TileEntityArdiumWorkbench tileEntityArdiumWorkbench;
 
-    public ContainerArdiumWorkbench (TileEntityArdiumWorkbench tileEntityArdiumWorkbench, InventoryPlayer inventoryPlayer) {
+    public ContainerArdiumWorkbench (final TileEntityArdiumWorkbench tileEntityArdiumWorkbench, InventoryPlayer inventoryPlayer) {
+
         this.tileEntityArdiumWorkbench = tileEntityArdiumWorkbench;
         tileEntityArdiumWorkbench.openInventory ();
-        setAllowedItems ();
-        this.addSlotToContainer (new SlotArdiumWorkbench (tileEntityArdiumWorkbench, 0, 187, 33));
+        SlotArdiumWorkbench slotArdiumWorkbench = new SlotArdiumWorkbench (tileEntityArdiumWorkbench, 0, 187, 33);
+        slotArdiumWorkbench.setAllowedItems ();
+        this.addSlotToContainer (slotArdiumWorkbench);
         this.bindPlayerInventory (inventoryPlayer);
     }
 
@@ -46,20 +39,6 @@ public class ContainerArdiumWorkbench extends Container {
         }
     }
 
-    private void setAllowedItems () {
-        ALLOWED_ITEMS.add (ardium);
-        ALLOWED_ITEMS.add (ItemsRegister.ardiumHelmet);
-        ALLOWED_ITEMS.add (ItemsRegister.ardiumChestplate);
-        ALLOWED_ITEMS.add (ItemsRegister.ardiumLeggings);
-        ALLOWED_ITEMS.add (ItemsRegister.ardiumBoots);
-        ALLOWED_ITEMS.add (ItemsRegister.ardiumSword);
-        ALLOWED_ITEMS.add (ItemsRegister.ardiumShovel);
-        ALLOWED_ITEMS.add (ItemsRegister.ardiumPickaxe);
-        ALLOWED_ITEMS.add (ItemsRegister.ardiumAxe);
-        ALLOWED_ITEMS.add (ItemsRegister.ardiumMultiTools);
-        ALLOWED_ITEMS.add (Item.getItemFromBlock (BlocksRegister.blockArdium));
-        ALLOWED_ITEMS.add (Item.getItemFromBlock (BlocksRegister.oreArdium));
-    }
 
     @Override
     public void onContainerClosed (EntityPlayer player) {
@@ -76,7 +55,7 @@ public class ContainerArdiumWorkbench extends Container {
         if ( slot != null && slot.getHasStack () ) {
             ItemStack itemStackInSlot = slot.getStack (); // The ItemStack we are clicking on
             itemStackResult = itemStackInSlot.copy (); //The ItemStack placed in the slot
-            if ( !(ALLOWED_ITEMS.contains (itemStackInSlot.getItem ())) ) {
+            if ( !(SlotArdiumWorkbench.ALLOWED_ITEMS.contains (itemStackInSlot.getItem ())) ) {
                 return null;
             }
 
@@ -97,5 +76,10 @@ public class ContainerArdiumWorkbench extends Container {
             }
         }
         return itemStackResult;
+    }
+
+    @Override
+    public void detectAndSendChanges () {
+        super.detectAndSendChanges ();
     }
 }

@@ -1,11 +1,14 @@
 package com.ardium.pvp.common.tileentity;
 
 import com.ardium.pvp.common.blocks.BlockContainerArdiumWorkbench;
-import com.ardium.pvp.common.inventory.ContainerArdiumWorkbench;
+import com.ardium.pvp.common.init.BlocksRegister;
+import com.ardium.pvp.common.init.ItemsRegister;
+import com.ardium.pvp.common.inventory.slots.SlotArdiumWorkbench;
 import com.ardium.pvp.common.items.ItemArdium;
-import net.minecraft.block.Block;
+import com.ardium.pvp.common.items.armors.ItemArmorArdium;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -13,9 +16,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.Constants;
 
 public class TileEntityArdiumWorkbench extends TileEntity implements IInventory {
-    private static final String KEY_ARDIUM_AMOUNT_STORED = "ArdiumAmountStored";
+    public static final String KEY_ARDIUM_STORED_AMOUNT = "ArdiumStoredAmount";
     private int ardiumStoredAmount;
-    private int tickCounter;
+    //private int tickCounter;
     private ItemStack[] ardiumWorkbenchContent = new ItemStack[1];
     private String ardiumWorkbenchContainerCustomName;
 
@@ -28,7 +31,7 @@ public class TileEntityArdiumWorkbench extends TileEntity implements IInventory 
     @Override
     public boolean isItemValidForSlot (int slotIndex, ItemStack itemStack) {
         itemStack = this.ardiumWorkbenchContent[slotIndex];
-        return ContainerArdiumWorkbench.ALLOWED_ITEMS.contains (itemStack.getItem ());
+        return SlotArdiumWorkbench.ALLOWED_ITEMS.contains (itemStack.getItem ());
     }
 
     @Override
@@ -38,6 +41,37 @@ public class TileEntityArdiumWorkbench extends TileEntity implements IInventory 
                 (double) this.xCoord + 0.5D,
                 (double) this.yCoord + 0.5D,
                 (double) this.zCoord + 0.5D) <= 128.0D;
+    }
+
+    public void calculateArdiumStoredAmount () {
+
+        if ( this.ardiumWorkbenchContent[0] == null || this.ardiumWorkbenchContent[0].stackSize < 0 ) return;
+
+        if ( this.ardiumWorkbenchContent[0].getItem () instanceof ItemArdium ) {
+            setArdiumStoredAmount (this.ardiumWorkbenchContent[0].stackSize);
+        } else if ( this.ardiumWorkbenchContent[0].getItem () instanceof ItemArmorArdium ) {
+            if ( this.ardiumWorkbenchContent[0].getItem () == ItemsRegister.ardiumHelmet ) {
+                setArdiumStoredAmount (this.ardiumWorkbenchContent[0].stackSize * 5);
+            }
+
+            if ( this.ardiumWorkbenchContent[0].getItem () == ItemsRegister.ardiumChestplate ) {
+                setArdiumStoredAmount (this.ardiumWorkbenchContent[0].stackSize * 8);
+            }
+
+            if ( this.ardiumWorkbenchContent[0].getItem () == ItemsRegister.ardiumLeggings ) {
+                setArdiumStoredAmount (this.ardiumWorkbenchContent[0].stackSize * 7);
+            }
+
+            if ( this.ardiumWorkbenchContent[0].getItem () == ItemsRegister.ardiumBoots ) {
+                setArdiumStoredAmount (this.ardiumWorkbenchContent[0].stackSize * 4);
+            }
+        } else if ( this.ardiumWorkbenchContent[0].getItem () == Item.getItemFromBlock (BlocksRegister.blockArdium) ) {
+            setArdiumStoredAmount (this.ardiumWorkbenchContent[0].stackSize * 9);
+        } else {
+            return;
+        }
+        decrStackSize (0, this.ardiumWorkbenchContent[0].stackSize);
+        worldObj.notifyBlockChange (xCoord, yCoord, zCoord, new BlockContainerArdiumWorkbench ());
     }
 
     @Override
@@ -52,7 +86,6 @@ public class TileEntityArdiumWorkbench extends TileEntity implements IInventory 
 
     @Override
     public void readFromNBT (NBTTagCompound nbtTagCompound) {
-        super.readFromNBT (nbtTagCompound);
 
         if ( nbtTagCompound.hasKey ("ArdiumWorkbenchContainerCustomName", Constants.NBT.TAG_STRING) ) {
             this.ardiumWorkbenchContainerCustomName = nbtTagCompound.getString ("ArdiumWorkbenchContainerCustomName");
@@ -68,6 +101,12 @@ public class TileEntityArdiumWorkbench extends TileEntity implements IInventory 
                 this.ardiumWorkbenchContent[j] = ItemStack.loadItemStackFromNBT (nbtTag);
             }
         }
+
+        if ( nbtTagCompound.hasKey (KEY_ARDIUM_STORED_AMOUNT, Constants.NBT.TAG_INT) ) {
+            ardiumStoredAmount = nbtTagCompound.getInteger (KEY_ARDIUM_STORED_AMOUNT);
+        }
+        super.readFromNBT (nbtTagCompound);
+        System.out.println (nbtTagCompound.toString ());
     }
 
     public void setArdiumWorkbenchContainerCustomName (String ardiumWorkbenchContainerCustomName) {
@@ -83,31 +122,8 @@ public class TileEntityArdiumWorkbench extends TileEntity implements IInventory 
         this.markDirty ();
     }
 
-
-    @Override
-    public void updateEntity () {
-        Block block = worldObj.getBlock (xCoord, yCoord, zCoord);
-        int blockMetadata = worldObj.getBlockMetadata (xCoord, yCoord, zCoord);
-        TileEntity tileEntity = worldObj.getTileEntity (xCoord, yCoord, zCoord);
-        if ( block instanceof BlockContainerArdiumWorkbench
-                && blockMetadata == 0
-                && tileEntity instanceof TileEntityArdiumWorkbench ) {
-
-            ItemStack itemStackInArdiumWorkbench = this.ardiumWorkbenchContent[0];
-            if ( itemStackInArdiumWorkbench != null && itemStackInArdiumWorkbench.getItem () instanceof ItemArdium ) {
-                ardiumStoredAmount += itemStackInArdiumWorkbench.stackSize;
-                decrStackSize (0, itemStackInArdiumWorkbench.stackSize);
-                System.out.println ("Ardium Stored Amount : " + ardiumStoredAmount);
-            }
-
-        }
-        super.updateEntity ();
-    }
-
-
     @Override
     public void writeToNBT (NBTTagCompound nbtTagCompound) {
-        super.writeToNBT (nbtTagCompound);
         if ( this.hasCustomInventoryName () ) {
             nbtTagCompound.setString ("ArdiumWorkbenchContainerCustomName", this.ardiumWorkbenchContainerCustomName);
         }
@@ -123,7 +139,20 @@ public class TileEntityArdiumWorkbench extends TileEntity implements IInventory 
             }
         }
         nbtTagCompound.setTag ("Items", nbttaglist);
+
+        nbtTagCompound.setInteger (KEY_ARDIUM_STORED_AMOUNT, ardiumStoredAmount);
+        System.out.println ("Ardium Stored Amount : " + nbtTagCompound.getInteger (KEY_ARDIUM_STORED_AMOUNT));
+        super.writeToNBT (nbtTagCompound);
+        System.out.println (nbtTagCompound.toString ());
     }
+
+    /*
+    @Override
+    public void updateEntity () {
+        calculateArdiumStoredAmount ();
+        super.updateEntity ();
+    }
+    */
 
     @Override
     public int getInventoryStackLimit () {
@@ -133,6 +162,18 @@ public class TileEntityArdiumWorkbench extends TileEntity implements IInventory 
     @Override
     public int getSizeInventory () {
         return this.ardiumWorkbenchContent.length;
+    }
+
+    public int getArdiumStoredAmount () {
+        return ardiumStoredAmount;
+    }
+
+    public void setArdiumStoredAmount (int ardiumStoredAmount) {
+        this.ardiumStoredAmount += ardiumStoredAmount;
+    }
+
+    public ItemStack[] getArdiumWorkbenchContent () {
+        return ardiumWorkbenchContent;
     }
 
     @Override

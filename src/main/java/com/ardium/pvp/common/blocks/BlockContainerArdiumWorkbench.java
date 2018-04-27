@@ -27,6 +27,7 @@ public class BlockContainerArdiumWorkbench extends BlockContainer {
         setHarvestLevel ("pickaxe", 3, 0);
         setResistance (10.0F);
         setLightLevel (0.5F);
+        setStepSound (soundTypeMetal);
     }
 
     @Override
@@ -51,7 +52,7 @@ public class BlockContainerArdiumWorkbench extends BlockContainer {
             player.openGui (ArdiumSE.instance, 0 /*ArdiumSEConfiguration.ardiumWorkbenchGuiId */, world, x, y, z);
             return true;
         } else {
-            return false;
+            return true;
         }
     }
 

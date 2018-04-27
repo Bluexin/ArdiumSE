@@ -19,7 +19,7 @@ public class CommonProxy {
         TileEntitiesRegister tileEntitiesRegister = new TileEntitiesRegister ();
         tileEntitiesRegister.initialization ();
         SmeletingRecipesRegister.register ();
-        registerRenders ();
+
     }
 
     public void initialization (FMLInitializationEvent initializationEvent) {
@@ -29,16 +29,5 @@ public class CommonProxy {
     }
 
     public void postInitialization (FMLPostInitializationEvent postInitializationEvent) {
-    }
-
-    public void registerRenders () {
-        this.registerTileEntitySpecialRenderer ();
-        this.registerISBRH ();
-    }
-
-    protected void registerTileEntitySpecialRenderer () {
-    }
-
-    protected void registerISBRH () {
     }
 }
