@@ -12,6 +12,7 @@ public class BlockArdium extends BlockCompressed {
         this.setBlockName ("blockArdium");
         this.setBlockTextureName (ArdiumSE.MOD_ID + ":" + this.getUnlocalizedName ().substring (5));
         this.setCreativeTab (ArdiumSE.TAB_ARDIUM_SE);
+        this.setHardness (10.0F);
         this.setHarvestLevel ("pickaxe", 3);
     }
 

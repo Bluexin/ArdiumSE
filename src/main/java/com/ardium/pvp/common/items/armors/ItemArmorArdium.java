@@ -38,19 +38,27 @@ public class ItemArmorArdium extends ItemArmor {
     }
 
     public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) {
-        if ( player.getCurrentArmor (3) != null && player.getCurrentArmor (3).getItem () == ItemsRegister.ardiumHelmet ) {
+        if ( player.getCurrentArmor (3) != null
+                && player.getCurrentArmor (3).getItem () != null
+                && player.getCurrentArmor (3).getItem () == ItemsRegister.ardiumHelmet ) {
             player.addPotionEffect (new PotionEffect (Potion.nightVision.getId (), 220, 0));
         }
 
-        if ( player.getCurrentArmor (2) != null && player.getCurrentArmor (2).getItem () == ItemsRegister.ardiumChestplate ) {
+        if ( player.getCurrentArmor (2) != null
+                && player.getCurrentArmor (2).getItem () != null
+                && player.getCurrentArmor (2).getItem () == ItemsRegister.ardiumChestplate ) {
             player.addPotionEffect (new PotionEffect (Potion.damageBoost.getId (), 1, 0));
         }
 
-        if ( player.getCurrentArmor (1) != null && player.getCurrentArmor (1).getItem () == ItemsRegister.ardiumLeggings ) {
+        if ( player.getCurrentArmor (1) != null
+                && player.getCurrentArmor (1).getItem () != null
+                && player.getCurrentArmor (1).getItem () == ItemsRegister.ardiumLeggings ) {
             player.addPotionEffect (new PotionEffect (Potion.digSpeed.getId (), 1, 0));
         }
 
-        if ( player.getCurrentArmor (0) != null && player.getCurrentArmor (0).getItem () == ItemsRegister.ardiumBoots ) {
+        if ( player.getCurrentArmor (0) != null
+                && player.getCurrentArmor (0).getItem () != null
+                && player.getCurrentArmor (0).getItem () == ItemsRegister.ardiumBoots ) {
             player.addPotionEffect (new PotionEffect (Potion.moveSpeed.getId (), 1, 0, true));
         }
 

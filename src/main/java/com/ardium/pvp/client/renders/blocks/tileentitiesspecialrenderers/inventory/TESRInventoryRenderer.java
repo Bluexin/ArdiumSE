@@ -12,7 +12,7 @@ import org.lwjgl.opengl.GL11;
 
 public class TESRInventoryRenderer implements ISimpleBlockRenderingHandler {
 
-    public void renderInventoryBlock(Block block, int metadata, int modelId, RenderBlocks renderer) {
+    public void renderInventoryBlock (Block block, int metadata, int modelId, RenderBlocks renderer) {
         if ( block instanceof BlockContainerArdiumWorkbench && metadata == 0 ) {
             GL11.glPushMatrix ();
             GL11.glRotated (180.0D, 0.0D, 0.0D, 1.0D);
@@ -26,15 +26,15 @@ public class TESRInventoryRenderer implements ISimpleBlockRenderingHandler {
 
     }
 
-    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
+    public boolean renderWorldBlock (IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
         return false;
     }
 
-    public boolean shouldRender3DInInventory(int modelId) {
+    public boolean shouldRender3DInInventory (int modelId) {
         return true;
     }
 
-    public int getRenderId() {
-        return ClientProxy.renderInventoryTESRId;
+    public int getRenderId () {
+        return ClientProxy.renderTESRId;
     }
 }

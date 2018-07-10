@@ -1,33 +1,34 @@
-item.ardium.name=Ardium
+gui.ardiumWorkbench.ardium_stored.label=Ardium Stored :
 
+tile.blockArdium.name=Ardium Block
+tile.blockArdiumWorkbench.name=Ardium Workbench
+tile.blockStairsObsidian.name=Obsidian Stairs
+tile.oreArdium.name=Ardium Ore
+tile.webObsidian.name=Obsidian Cobweb
+
+item.ardium.name=Ardium
+item.ardiumHelmet.name=Ardium Helmet
+item.ardiumChestplate.name=Ardium Chestplate
+item.ardiumLeggings.name=Ardium Leggings
+item.ardiumBoots.name=Ardium Boots
 item.ardiumSword.name=Ardium Sword
 item.ardiumShovel.name=Ardium Shovel
 item.ardiumPickaxe.name=Ardium Pickaxe
 item.ardiumAxe.name=Ardium Axe
 item.ardiumMultiTools.name=Ardium MultiTools
-
-item.ardiumHelmet.name=Ardium Helmet
-item.ardiumChestplate.name=Ardium Chestplate
-item.ardiumLeggings.name=Ardium Leggings
-item.ardiumBoots.name=Ardium Boots
-
 item.oxiumSword.name=Oxium Sword
 item.oxiumShovel.name=Oxium Shovel
 item.oxiumPickaxe.name=Oxium Pickaxe
 item.oxiumAxe.name=Oxium Axe
-
 item.oxiumHelmet.name=Oxium Helmet
 item.oxiumChestplate.name=Oxium Chestplate
 item.oxiumLeggings.name=Oxium Leggings
 item.oxiumBoots.name=Oxium Boots
+item.sevenLeagueBoots.name=Seven League Boots
+item.stringObsidian.name=Obsidian String
 
-
-tile.oreArdium.name=Ardium Ore
-tile.blockArdium.name=Ardium Block
-tile.blockArdiumWorkbench.name=Ardium Workbench
 
 container.ardiumWorkbench.name=Ardium Workbench
 
-gui.ardiumWorkbench.number_of_ardium_stored.label=Number of Ardium Stored :
 
 itemGroup.ardiumSETab=Ardium SE Tab

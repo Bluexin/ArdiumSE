@@ -9,10 +9,10 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 public class GUIHandlerArdiumSE implements IGuiHandler {
-
+    private TileEntity tileEntity;
     @Override
     public Object getServerGuiElement(int guiID, EntityPlayer player, World world, int x, int y, int z) {
-        TileEntity tileEntity = world.getTileEntity (x, y, z);
+        tileEntity = world.getTileEntity (x, y, z);
         if ( tileEntity instanceof TileEntityArdiumWorkbench ) {
             return new ContainerArdiumWorkbench ((TileEntityArdiumWorkbench) tileEntity, player.inventory);
         }
@@ -21,7 +21,7 @@ public class GUIHandlerArdiumSE implements IGuiHandler {
 
     @Override
     public Object getClientGuiElement(int guiID, EntityPlayer player, World world, int x, int y, int z) {
-        TileEntity tileEntity = world.getTileEntity (x, y, z);
+        tileEntity = world.getTileEntity (x, y, z);
         if ( tileEntity instanceof TileEntityArdiumWorkbench ) {
             return new GuiArdiumWorkbench ((TileEntityArdiumWorkbench) tileEntity, player.inventory);
         }

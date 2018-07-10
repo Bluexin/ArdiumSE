@@ -6,18 +6,18 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 
 public class ItemArdium extends Item {
-    public ItemArdium() {
+    public ItemArdium () {
         this.setUnlocalizedName ("ardium");
         this.setTextureName (ArdiumSE.MOD_ID + ":" + this.getUnlocalizedName ().substring (5));
         this.setCreativeTab (ArdiumSE.TAB_ARDIUM_SE);
     }
 
-    public boolean isBeaconPayment(ItemStack stack) {
+    public boolean isBeaconPayment (ItemStack stack) {
         return stack.getItem () instanceof ItemArdium;
     }
 
     @Override
     public String getItemStackDisplayName (ItemStack itemStack) {
-        return EnumChatFormatting.DARK_PURPLE + super.getItemStackDisplayName (itemStack);
+        return EnumChatFormatting.DARK_PURPLE + super.getItemStackDisplayName (itemStack) + EnumChatFormatting.RESET;
     }
 }

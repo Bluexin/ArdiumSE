@@ -1,8 +1,10 @@
 package com.ardium.pvp.common.init;
 
 import com.ardium.pvp.common.items.ItemArdium;
+import com.ardium.pvp.common.items.ItemStringObsidian;
 import com.ardium.pvp.common.items.armors.ItemArmorArdium;
 import com.ardium.pvp.common.items.armors.ItemArmorOxium;
+import com.ardium.pvp.common.items.armors.ItemArmorSevenLeagueBoots;
 import com.ardium.pvp.common.items.tools.ardium.*;
 import com.ardium.pvp.common.items.tools.oxium.ItemAxeOxium;
 import com.ardium.pvp.common.items.tools.oxium.ItemPickaxeOxium;
@@ -34,19 +36,21 @@ public class ItemsRegister {
     public static Item ardiumPickaxe;
     public static Item ardiumAxe;
     public static Item ardiumMultiTools;
+    public static Item stringObsidian;
+    public static Item sevenLeagueBoots;
     private static Item oxiumSword;
     private static Item oxiumShovel;
     private static Item oxiumAxe;
     private static Item oxiumPickaxe;
 
     static {
-        ARDIUM_TOOLS_MATERIAL = EnumHelper.addToolMaterial ("ARDIUM_TOOLS_MATERIAL", 3, 4999, 30.0F, 6.0F, 35).setRepairItem (new ItemStack (ardium, 0, 1));
-        ARDIUM_ARMOR_MATERIAL = EnumHelper.addArmorMaterial ("ARDIUM_ARMOR_MATERIAL", 100, new int[]{4, 9, 7, 4}, 20);
+        ARDIUM_TOOLS_MATERIAL = EnumHelper.addToolMaterial ("ARDIUM_TOOLS_MATERIAL", 3, 4999, 30.0F, 6.0F, 35).setRepairItem (new ItemStack (ardium));
+        ARDIUM_ARMOR_MATERIAL = EnumHelper.addArmorMaterial ("ARDIUM_ARMOR_MATERIAL", 100, new int[] {4, 9, 7, 4}, 20);
         OXIUM_TOOLS_MATERIAL = EnumHelper.addToolMaterial ("OXIUM_TOOLS_MATERIAL", 4, 5100, 31.0F, 7.0F, 36);
-        OXIUM_ARMOR_MATERIAL = EnumHelper.addArmorMaterial ("OXIUM_ARMOR_MATERIAL", 350, new int[]{5, 10, 8, 5}, 30);
+        OXIUM_ARMOR_MATERIAL = EnumHelper.addArmorMaterial ("OXIUM_ARMOR_MATERIAL", 350, new int[] {5, 10, 8, 5}, 30);
     }
 
-    public static void initialization() {
+    public static void initialization () {
         ardium = new ItemArdium ();
         ardiumSword = new ItemSwordArdium (ARDIUM_TOOLS_MATERIAL);
         ardiumShovel = new ItemSpadeArdium (ARDIUM_TOOLS_MATERIAL);
@@ -65,10 +69,12 @@ public class ItemsRegister {
         oxiumChestplate = new ItemArmorOxium (OXIUM_ARMOR_MATERIAL, 1);
         oxiumLeggings = new ItemArmorOxium (OXIUM_ARMOR_MATERIAL, 2);
         oxiumBoots = new ItemArmorOxium (OXIUM_ARMOR_MATERIAL, 3);
+        sevenLeagueBoots = new ItemArmorSevenLeagueBoots (ArmorMaterial.DIAMOND, 3);
+        stringObsidian = new ItemStringObsidian ();
         register ();
     }
 
-    private static void register() {
+    private static void register () {
         registerItems (ardium);
         registerItems (ardiumSword);
         registerItems (ardiumShovel);
@@ -87,9 +93,11 @@ public class ItemsRegister {
         registerItems (oxiumChestplate);
         registerItems (oxiumLeggings);
         registerItems (oxiumBoots);
+        registerItems (sevenLeagueBoots);
+        registerItems (stringObsidian);
     }
 
-    private static void registerItems(Item item) {
+    private static void registerItems (Item item) {
         GameRegistry.registerItem (item, item.getUnlocalizedName ().substring (5));
     }
 }

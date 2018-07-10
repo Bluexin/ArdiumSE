@@ -9,7 +9,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraft.creativetab.CreativeTabs;
 
-@Mod (modid = ArdiumSE.MOD_ID, name = "ArdiumSE", version = "Special Edition 0.2", guiFactory = ArdiumSE.GUI_FACTORY)
+@Mod (modid = ArdiumSE.MOD_ID, name = "ArdiumSE", version = "Special Edition 0.2" /*, guiFactory = ArdiumSE.GUI_FACTORY*/)
 public class ArdiumSE {
     public static final String GUI_FACTORY = "com.ardium.pvp.client.gui.GuiFactoryArdiumSE";
     public static final String MOD_ID = "ardiumse";
