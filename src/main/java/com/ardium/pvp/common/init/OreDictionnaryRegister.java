@@ -51,7 +51,7 @@ public class OreDictionnaryRegister {
         GameRegistry.addRecipe (new ShapedOreRecipe (ItemsRegister.ardiumAxe, "AA ", "AS ", " S ", 'A', "ingotArdium", 'S', "woodStick"));
         //Modded Shaped Ore Blocks Recipes
         GameRegistry.addRecipe (new ShapedOreRecipe (BlocksRegister.webObsidian, "OSO", "SOS", "OSO",
-                'O', "blockObsidian", ""));
+                'O', "blockObsidian", 'S', "stringObsidian"));
     }
 
     private static void registerShapelessOreRecipes () {
