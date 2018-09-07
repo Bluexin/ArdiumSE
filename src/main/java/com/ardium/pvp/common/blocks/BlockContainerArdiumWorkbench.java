@@ -3,6 +3,7 @@ package com.ardium.pvp.common.blocks;
 import com.ardium.pvp.ArdiumSE;
 import com.ardium.pvp.client.ClientProxy;
 import com.ardium.pvp.common.tileentity.TileEntityArdiumWorkbench;
+import com.google.common.collect.Lists;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
@@ -98,25 +99,19 @@ public class BlockContainerArdiumWorkbench extends BlockContainer {
             if ( tileEntity instanceof TileEntityArdiumWorkbench ) {
                 TileEntityArdiumWorkbench tileEntityArdiumWorkbench = (( TileEntityArdiumWorkbench ) tileEntity);
 
-                ArrayList <ItemStack> items = new ArrayList <ItemStack> ();
-
-                int count = quantityDropped (metadata, fortune, world.rand);
-                for (int i = 0; i < count; i++) {
-                    Item item = getItemDropped (metadata, world.rand, fortune);
-                    if ( item != null ) {
-                        ItemStack blockToDrop = new ItemStack (item, 1, damageDropped (metadata));
-                        NBTTagCompound blockNBTTagCompound = new NBTTagCompound ();
-                        NBTTagCompound tileEntityNBTTagCompound = new NBTTagCompound ();
-                        tileEntityArdiumWorkbench.writeToNBT (tileEntityNBTTagCompound);
-                        tileEntityNBTTagCompound.removeTag ("x");
-                        tileEntityNBTTagCompound.removeTag ("y");
-                        tileEntityNBTTagCompound.removeTag ("z");
-                        blockNBTTagCompound.setTag ("TileEntityData", tileEntityNBTTagCompound);
-                        blockToDrop.stackTagCompound = blockNBTTagCompound;
-                        items.add (blockToDrop);
-                    }
+                Item item = getItemDropped(metadata, world.rand, fortune);
+                if (item != null) {
+                    ItemStack blockToDrop = new ItemStack(item, 1, damageDropped(metadata));
+                    NBTTagCompound blockNBTTagCompound = new NBTTagCompound();
+                    NBTTagCompound tileEntityNBTTagCompound = new NBTTagCompound();
+                    tileEntityArdiumWorkbench.writeToNBT(tileEntityNBTTagCompound);
+                    tileEntityNBTTagCompound.removeTag("x");
+                    tileEntityNBTTagCompound.removeTag("y");
+                    tileEntityNBTTagCompound.removeTag("z");
+                    blockNBTTagCompound.setTag("TileEntityData", tileEntityNBTTagCompound);
+                    blockToDrop.stackTagCompound = blockNBTTagCompound;
+                    return Lists.newArrayList(blockToDrop);
                 }
-                return items;
             }
         }
         return super.getDrops (world, x, y, z, metadata, fortune);
