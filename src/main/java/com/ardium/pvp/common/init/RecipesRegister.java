@@ -5,7 +5,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
-public class RecipesRegister {
+public final class RecipesRegister {
     public static void registerRecipes () {
         registerShapedCraftingRecipes ();
         registerShapelessCraftingRecipes ();

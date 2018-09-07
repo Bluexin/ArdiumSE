@@ -8,7 +8,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
-public class OreDictionnaryRegister {
+public final class OreDictionnaryRegister {
 
     public static void registerOres () {
         //Vanilla Items
@@ -50,8 +50,7 @@ public class OreDictionnaryRegister {
         GameRegistry.addRecipe (new ShapedOreRecipe (ItemsRegister.ardiumPickaxe, "AAA", " S ", " S ", 'A', "ingotArdium", 'S', "woodStick"));
         GameRegistry.addRecipe (new ShapedOreRecipe (ItemsRegister.ardiumAxe, "AA ", "AS ", " S ", 'A', "ingotArdium", 'S', "woodStick"));
         //Modded Shaped Ore Blocks Recipes
-        GameRegistry.addRecipe (new ShapedOreRecipe (BlocksRegister.webObsidian, "OSO", "SOS", "OSO",
-                'O', "blockObsidian", 'S', "stringObsidian"));
+        GameRegistry.addRecipe (new ShapedOreRecipe (BlocksRegister.webObsidian, "OSO", "SOS", "OSO", 'O', "blockObsidian", 'S', "stringObsidian"));
     }
 
     private static void registerShapelessOreRecipes () {

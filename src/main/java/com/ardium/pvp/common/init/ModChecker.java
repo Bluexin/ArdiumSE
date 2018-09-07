@@ -3,7 +3,7 @@ package com.ardium.pvp.common.init;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
 
-public class ModChecker {
+public final class ModChecker {
     public static boolean isArdiumSELoaded;
     public static boolean isBotaniaLoaded;
     public static boolean isCoFHCoreLoaded;

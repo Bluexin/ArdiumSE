@@ -4,7 +4,7 @@ import com.ardium.pvp.ArdiumSE;
 import com.ardium.pvp.common.tileentity.TileEntityArdiumWorkbench;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class TileEntitiesRegister {
+public final class TileEntitiesRegister {
 
     public void initialization () {
         TileEntityArdiumWorkbench tileEntityArdiumWorkbench = new TileEntityArdiumWorkbench ();

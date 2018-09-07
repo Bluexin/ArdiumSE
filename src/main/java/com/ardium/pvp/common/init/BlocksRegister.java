@@ -10,7 +10,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockStairs;
 
-public class BlocksRegister {
+public final class BlocksRegister {
     public static BlockOreArdium oreArdium;
     public static BlockArdium blockArdium;
     public static Block webObsidian;

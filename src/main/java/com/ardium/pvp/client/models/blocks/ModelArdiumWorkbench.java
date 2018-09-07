@@ -9,7 +9,7 @@ import org.lwjgl.opengl.GL11;
  * ModelArdiumWorkbench - Lérog
  * Created using Tabula 4.1.1
  */
-public class ModelArdiumWorkbench extends ModelBase {
+public final class ModelArdiumWorkbench extends ModelBase {
     private final ModelRenderer Base;
     private final ModelRenderer AccentBas;
     private final ModelRenderer AccentHaut;

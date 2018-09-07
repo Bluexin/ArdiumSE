@@ -20,7 +20,7 @@ import static com.ardium.pvp.common.init.ItemsRegister.*;
 
 public class TileEntityArdiumWorkbench extends TileEntity implements IInventory {
     public static final String KEY_ARDIUM_STORED_AMOUNT = "ArdiumStoredAmount";
-    public static final Set < Item > ALLOWED_ITEMS = new HashSet < Item > ();
+    public static final Set <Item> ALLOWED_ITEMS = new HashSet <Item> ();
     public static final String KEY_ARDIUM_CONTAINER_CUSTOM_NAME = "ArdiumWorkbenchContainerCustomName";
     public int ardiumStoredAmount;
     public String ardiumWorkbenchContainerCustomName;
@@ -45,9 +45,9 @@ public class TileEntityArdiumWorkbench extends TileEntity implements IInventory 
     public boolean isUseableByPlayer (EntityPlayer entityPlayer) {
         return this.worldObj.getTileEntity (this.xCoord, this.yCoord, this.zCoord) instanceof TileEntityArdiumWorkbench
                 && entityPlayer.getDistanceSq (
-                (double) this.xCoord + 0.5D,
-                (double) this.yCoord + 0.5D,
-                (double) this.zCoord + 0.5D) <= 128.0D;
+                ( double ) this.xCoord + 0.5D,
+                ( double ) this.yCoord + 0.5D,
+                ( double ) this.zCoord + 0.5D) <= 128.0D;
     }
 
     public int getArdiumStoredAmount () {
@@ -141,7 +141,7 @@ public class TileEntityArdiumWorkbench extends TileEntity implements IInventory 
             NBTTagCompound nbtTagCompoundInSlot = nbtTagList.getCompoundTagAt (i);
             int itemStackSlotIndex = nbtTagCompoundInSlot.getByte ("Slot") & 255;
 
-            if ( itemStackSlotIndex < this.ardiumWorkbenchContent.length ) {
+            if ( itemStackSlotIndex < this.ardiumWorkbenchContent.length && this.ardiumWorkbenchContent[itemStackSlotIndex] != null ) {
                 this.ardiumWorkbenchContent[itemStackSlotIndex] = ItemStack.loadItemStackFromNBT (nbtTagCompoundInSlot);
             }
         }
@@ -165,43 +165,16 @@ public class TileEntityArdiumWorkbench extends TileEntity implements IInventory 
     }
 
 
-    /*
     @Override
     public void updateEntity () {
         if ( ardiumWorkbenchContent[0] != null && ardiumWorkbenchContent[0].getItem () != null ) {
             if ( isItemValidForSlot (0, ardiumWorkbenchContent[0]) ) {
                 calculateArdiumStoredAmount ();
                 System.out.println (ardiumStoredAmount);
-                decrStackSize (0, ardiumWorkbenchContent[0].stackSize);
+                //decrStackSize (0, ardiumWorkbenchContent[0].stackSize);
             }
-        }
-    }*/
-
-    /*
-    public void writeToNBT(NBTTagCompound p_145841_1_)
-    {
-        super.writeToNBT(p_145841_1_);
-        NBTTagList nbttaglist = new NBTTagList();
-
-        for (int i = 0; i < this.chestContents.length; ++i)
-        {
-            if (this.chestContents[i] != null)
-            {
-                NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-                nbttagcompound1.setByte("Slot", (byte)i);
-                this.chestContents[i].writeToNBT(nbttagcompound1);
-                nbttaglist.appendTag(nbttagcompound1);
-            }
-        }
-
-        p_145841_1_.setTag("Items", nbttaglist);
-
-        if (this.hasCustomInventoryName())
-        {
-            p_145841_1_.setString("CustomName", this.customName);
         }
     }
-     */
 
     @Override
     public void writeToNBT (NBTTagCompound nbtTagCompound) {
@@ -212,12 +185,12 @@ public class TileEntityArdiumWorkbench extends TileEntity implements IInventory 
         NBTTagList nbtTagList = new NBTTagList ();
         for (int i = 0; i < ardiumWorkbenchContent.length; ++i) {
             NBTTagCompound nbtTagSlot = new NBTTagCompound ();
-            nbtTagSlot.setByte ("Slot", ((byte) i));
-            this.ardiumWorkbenchContent[i].writeToNBT (nbtTagSlot);
+            nbtTagSlot.setByte ("Slot", (( byte ) i));
+            if ( this.ardiumWorkbenchContent[i] != null ) this.ardiumWorkbenchContent[i].writeToNBT (nbtTagSlot);
             nbtTagList.appendTag (nbtTagSlot);
         }
         nbtTagCompound.setTag ("Items", nbtTagList);
-        nbtTagCompound.setInteger (KEY_ARDIUM_STORED_AMOUNT, this.ardiumStoredAmount);
+        if ( ardiumStoredAmount > 0 ) nbtTagCompound.setInteger (KEY_ARDIUM_STORED_AMOUNT, this.ardiumStoredAmount);
     }
 
     @Override

@@ -17,7 +17,7 @@ import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.EnumHelper;
 
-public class ItemsRegister {
+public final class ItemsRegister {
     private static final ToolMaterial ARDIUM_TOOLS_MATERIAL;
     private static final ArmorMaterial ARDIUM_ARMOR_MATERIAL;
     private static final ToolMaterial OXIUM_TOOLS_MATERIAL;
