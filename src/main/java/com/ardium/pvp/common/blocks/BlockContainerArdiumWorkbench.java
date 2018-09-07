@@ -76,6 +76,14 @@ public class BlockContainerArdiumWorkbench extends BlockContainer {
         if ( itemStack.getItemDamage () == 0 ) {
             TileEntity tileEntity = world.getTileEntity (x, y, z);
             if ( tileEntity instanceof TileEntityArdiumWorkbench ) {
+                NBTTagCompound tag = itemStack.stackTagCompound;
+                if (tag != null) {
+                    NBTTagCompound teTag = tag.getCompoundTag("TileEntityData");
+                    tileEntity.readFromNBT(teTag);
+                    tileEntity.xCoord = x;
+                    tileEntity.yCoord = y;
+                    tileEntity.zCoord = z;
+                }
                 if ( itemStack.hasDisplayName () ) {
                     (( TileEntityArdiumWorkbench ) tileEntity).setArdiumWorkbenchContainerCustomName (itemStack.getDisplayName ());
                 }
